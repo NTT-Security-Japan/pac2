@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/spin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dialog.css') }}">
+  <script src="{{ url_for('static', filename='js/components/particles.js') }}"></script>
+  <title>PowerAutomate C2 Portal</title>
+</head>
+
+<body>
+  <div id="overlay-gray"></div>
+  <div id="particles"></div>
+  <img src="{{ url_for('static', filename='img/pac2-3.png') }}" id="logo-back" width="50%" />
+  <div id="intro"></div>
+
+  <div class="leftbar">
+    <a href="/portal">
+      <img src="{{ url_for('static', filename='img/home.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/home_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/home.png') }}'" height="60px" title="HOME"></a>
+    <a href="/portal/client?client_id={{ client_id }}">
+      <img src="{{ url_for('static', filename='img/client_selected.png') }}" height="60px" title="Client"></a>
+    </a>
+    <a href="/portal/teams?client_id={{ client_id }}" target="_blank">
+      <img src="{{ url_for('static', filename='img/teams.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/teams_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/teams.png') }}'" height="60px" title="Teams"></a>
+    <a href="#?client_id={{ client_id }}" target="_blank">
+      <img src="{{ url_for('static', filename='img/email.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/email_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/email.png') }}'" height="60px" title="Outlook"></a>
+    <a href="#" target="_blank">
+      <img src="{{ url_for('static', filename='img/files.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/files_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/files.png') }}'" height="60px" title="SharePoint"></a>
+  </div>
+
+  <div class="logout">
+    <a href="/logout">
+      <img src="{{ url_for('static', filename='img/logout.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/logout_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/logout.png') }}'" height="30px" title="Logout"></a>
+  </div>
+
+  <div class="right-content">
+    <h1>Client Portal</h1>
+    <div class="boarderless-table-container">
+      <h2>Client User</h2>
+      <table cellpadding="30px">
+        <tr><td>User Name</td><td>{{ client["username"] }}</td></tr>
+        <tr><td>Email</td><td>{{ client["email"] }}</td></tr>
+        <tr><td>Tenant ID</td><td>{{ client["tenant_id"] }}</td></tr>
+        <tr><td>User Principal Name</td><td>{{ client["user_principal_name"] }}</td></tr>
+        <tr><td>Last Update</td><td>{{ client["updated_at"] }}</td></tr>
+        {# todo: update payload link #}
+        <tr><td>Current Payload</td><td><a href="/portal/client/payload?client_id={{ client['client_id'] }}" download="payload.json">Download</a></td></tr>
+      </table>
+    </div>
+
+    <div class="flat-table-container">
+      <div id="task-table"></div>
+      <div id="payload-table"></div>
+    </div>
+
+    <div class="json-input-container">
+      <h2>Raw Payload</h2>
+      <textarea id="json-input" rows="10" cols="50"></textarea>
+      <button id="submit-json">Submit JSON</button>
+      <div id="validation-message"></div>
+    </div>
+  </div>
+
+  <div id="flat-dialog" class="dialog">
+    <div class="dialog-content">
+      <div class="content-header">
+        <div class="msg-title">Error</div>
+        <span class="close-dialog">x</span>
+      </div>
+      <div class="msg-body">
+        <p id="dialog-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/components/dialog.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/components/icon.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/client.js') }}"></script>
+</body>
+</html>

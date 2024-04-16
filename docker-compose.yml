@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  pac2:
+    build: .
+    command: poetry run python ./pac2/wsgi.py
+    volumes:
+      - ./mount:/app/mount
+    ports:
+      - 9999:9999

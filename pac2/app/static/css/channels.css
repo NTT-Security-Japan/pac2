@@ -1,0 +1,41 @@
+body {
+  background-color: #f0f0f0;
+}
+th {
+  width: 185px;
+  text-align: left;
+  height: 60px;
+  float:left;
+  border-bottom: 1px solid #ccc;
+}
+th img{
+  vertical-align: middle;
+}
+th:hover {
+  background-color: #e0e0e0;
+}
+td {
+  height: 60px;
+  width: 185px;
+  white-space: nowrap; /* チャンネル名が長くても折り返さない */
+  border-bottom: 1px solid #ccc;
+}
+td:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+details summary {
+  height: 60px;
+  width: 185px;
+  line-height: 60px;
+  cursor: pointer;
+  white-space: nowrap; /* チーム名が長くても折り返さない */
+  border-bottom: 1px solid #ccc;
+}
+details summary:hover {
+  background-color: #e0e0e0;
+}
+.datetime {
+  color: #666666;
+  font-size: 11px;
+}

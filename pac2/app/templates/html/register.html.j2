@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dialog.css') }}">
+  <script src="{{ url_for('static', filename='js/components/particles.js') }}"></script>
+</head>
+
+<body>
+  <div id="overlay-gray"></div>
+  <img src="{{ url_for('static', filename='img/pac2-3.png') }}" id="logo-back" width="50%" />
+  <div id="particles"></div>
+  <div id="intro"></div>
+
+  <div class="leftbar">
+    <a href="#">
+      <img src="{{ url_for('static', filename='img/home_selected.png') }}" height="60px" title="HOME"></a>
+  </div>
+
+  <div class="right-content">
+    <h1>Register New User</h1>
+
+    <form action="/register" method="post">
+      <div class="boarderless-table-container">
+        <table>
+          <tr>
+            <td>Username</td>
+            <td><input type="text" id="username" name="username" placeholder="username" required></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input type="password" id="password" name="password" placeholder="password" required></td>
+          </tr>
+          <tr>
+            <td><button type="submit">Register</button></td>
+          </tr>
+        </table>
+      </div>
+    </form>
+    <p> {{ message }} </p>
+  </div>
+
+  <div id="flat-dialog" class="dialog">
+    <div class="dialog-content">
+      <div class="content-header">
+        <div class="msg-title">Error</div>
+        <span class="close-dialog">x</span>
+      </div>
+      <div class="msg-body">
+        <p id="dialog-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/components/dialog.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/login.js') }}"></script>
+
+</body>
+
+</html>

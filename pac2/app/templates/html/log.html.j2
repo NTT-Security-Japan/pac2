@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <title>PowerAutomate C2 Log</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <script src="{{ url_for('static', filename='js/components/particles.js') }}"></script>
+</head>
+
+<body>
+  <div id="overlay-gray"></div>
+  <div id="particles"></div>
+  <div id="intro"></div>
+
+  <div class="leftbar">
+    <a href="/portal">
+      <img src="{{ url_for('static', filename='img/home.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/home_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/home.png') }}'" height="60px" title="HOME"></a>
+    <a href="/portal/log">
+      <img src="{{ url_for('static', filename='img/log_selected.png') }}" height="60px" title="LOG">
+    </a>
+  </div>
+
+  <div class="logout">
+    <a href="/logout">
+      <img src="{{ url_for('static', filename='img/logout.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/logout_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/logout.png') }}'" height="60px" title="Logout"></a>
+  </div>
+
+  <div class="right-content">
+    <h1>Log Portal</h1>
+    <p>Beacon Access Logs</p>
+    <div class="log">
+      <pre>{% for log in beacon_logs %}{{ log }}<br>{% endfor %}</pre>
+    </div>
+
+    <p>Worker Logs</p>
+    <div class="log">
+      <pre>{% for log in worker_logs %}{{ log }}<br>{% endfor %}</pre>
+    </div>
+  </div>
+
+</body>
+
+</html>

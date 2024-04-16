@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html> 
+
+<head>
+  <title>{{ client["username"] }}: Teams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="clientid" content="{{ client_id }}">
+</head>
+
+<frameset cols="200,*" frameborder="no" border="0" framespacing="0">
+  <frame src="channels?client_id={{ client_id }}" name="frame1" title="channels" name="channels" id="channels">
+  <frame src="messages?client_id={{ client_id }}" name="frame3" title="messages" id="messages">
+    <noframes>
+      <body>
+        no text
+      </body>
+    </noframes>
+</frameset>
+
+</html>

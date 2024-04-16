@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/channels.css') }}">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <script src="{{ url_for('static', filename='js/pages/channels.js') }}"></script>
+  <script>
+    list_channel("{{ client_id }}");
+  </script>
+  <table id="channel_table">
+    <tr>
+        <th><div onclick="window.parent.messages.src='/portal/messages?client_id={{ client_id }}'"><img src="{{ url_for('static', filename='img/teams_selected_tp.png') }}" height="60px">Channels</div></th>
+    </tr>
+  </table>
+</body>
+
+</html>

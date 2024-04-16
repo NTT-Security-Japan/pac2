@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <title>PowerAutomate C2 Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/spin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dialog.css') }}">
+  <script src="{{ url_for('static', filename='js/components/particles.js') }}"></script>
+</head>
+
+<body>
+  <div id="overlay-gray"></div>
+  <div id="particles"></div>
+  <img src="{{ url_for('static', filename='img/pac2-3.png') }}" id="logo-back" width="50%" />
+  <div id="intro"></div>
+
+  <div class="leftbar">
+    <a href="/portal">
+      <img src="{{ url_for('static', filename='img/home_selected.png') }}" height="60px" title="HOME"></a>
+    <a href="/portal/log">
+      <img src="{{ url_for('static', filename='img/log.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/log_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/log.png') }}'" height="60px" title="LOG"></a>
+  </div>
+
+  <div class="logout">
+    <a href="/logout">
+      <img src="{{ url_for('static', filename='img/logout.png') }}"
+        onmouseover="this.src='{{ url_for('static', filename='img/logout_selected.png') }}'"
+        onmouseout="this.src='{{ url_for('static', filename='img/logout.png') }}'" height="30px" title="Logout"></a>
+  </div>
+
+  <div class="right-content">
+    <h1>PowerAutomate C2 Portal</h1>
+    <div class="boarderless-table-container">
+      <h2>Download Initial Payload</h2>
+      <form id="getInitalPayloadForm" action="/portal/initial" method="get">
+        <table>
+          <tr>
+            <td>Flow Management ID</td>
+            <td><input type="text" id="mngID" name="mngID" size="50"></td>
+          </tr>
+          <tr>
+            <td>Method</td>
+            <td>
+              <select id="method" name="method">
+                <option value="http">HTTP(S)</option>
+                <option value="dropbox">Dropbox</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td id="sendtoLabel">POST URL</td>
+            <td><input id="sendto" name="sendto" type="text" size="50"></td>
+          </tr>
+          <tr>
+            <td>XOR Encode</td>
+            <td><input name="xor" type="checkbox"></td>
+          </tr>
+          <tr>
+            <td><button type="submit">Download</button></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div class="flat-table-container">
+      <div id="client-table"></div>
+      <div id="task-table"></div>
+    </div>
+  </div>
+
+  <div id="flat-dialog" class="dialog">
+    <div class="dialog-content">
+      <div class="content-header">
+        <div class="msg-title">Error</div>
+        <span class="close-dialog">x</span>
+      </div>
+      <div class="msg-body">
+        <p id="dialog-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/components/dialog.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/components/icon.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/utils/validation.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/portal.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+name: Scan Legacy Package with Yara rule
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  scan_package:
+    name: Scan Legacy Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      
+      - name: Restore pip cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ubuntu-latest-${{ env.pythonLocation }}-${{ hashFiles('**/Pipfile') }}
+      
+      - name: Install Yara
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yara
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+      
+      - name: Setup PAC2
+        run: |
+          poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+
+      - name: Create test files
+        run: |
+          mkdir -p dist
+          poetry run python test/create_dropbox_payload.py
+          poetry run python test/create_http_payload.py
+          mv *.zip ./dist/
+      
+      - name: Scan
+        run : |
+          yara -r ./utils/powerautomate_c2.yara ./dist > scan_results.txt
+
+      - name: Check scan result
+        run : |
+          grep -Fxq "PowerAutomateC2_InitialFlow ./dist/dummy_http_beacon.zip" scan_results.txt
+          if [ $? -ne 0 ]; then
+            echo "Required line not found: PowerAutomateC2_InitialFlow ./dist/dummy_http_beacon.zip"
+            exit 1
+          fi
+          grep -Fxq "PowerAutomateC2_InitialFlow ./dist/dummy_dropbox_beacon.zip" scan_results.txt
+          if [ $? -ne 0 ]; then
+            echo "Required line not found: PowerAutomateC2_InitialFlow ./dist/dummy_dropbox_beacon.zip"
+            exit 1
+          fi

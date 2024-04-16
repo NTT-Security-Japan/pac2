@@ -1,0 +1,90 @@
+.dialog {
+  display: none;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.dialog-content {
+  background-color: #e4e4e4;
+  margin: auto;
+  margin-top: 20%;
+  margin-bottom: 10px;
+  width: 50%;
+  max-width: 800px;
+  height: auto;
+}
+
+.content-header {
+  background: MediumSeaGreen;
+  padding: 3px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.msg-title {
+  font-size:  24px;
+  padding: 0 10px;
+  margin: 0.6rem 0;
+  color: #fff;
+}
+
+.close-dialog {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.close-dialog:hover {
+  cursor: pointer;
+}
+
+.msg-body {
+  padding: 0px 20px;
+  padding-bottom: 20px;
+  margin: 15px 0;
+  color: #4c4c4c;
+}
+
+.msg-body .msg-section-header{
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.msg-body .msg-section-content{
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.msg-body .msg-section-content form{
+  display: inline-block;
+}
+
+.msg-body .msg-section-content button{
+  background-color: MediumSeaGreen; 
+  color: white; 
+  padding: 10px 32px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 1.1rem; 
+  margin: 4px 2px;
+  cursor: pointer; 
+  border: none; 
+  border-radius: 4px; 
+  transition-duration: 0.4s; 
+}
+
+.msg-body .msg-section-content button:hover {
+  background-color: cadetblue; 
+  color: white; 
+}
+
+#cancel-button{
+  background-color: dimgray; 
+}
+
+#cancel-button:hover {
+  background-color: lightslategray; 
+}

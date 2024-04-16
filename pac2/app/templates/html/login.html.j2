@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dialog.css') }}">
+  <script src="{{ url_for('static', filename='js/components/particles.js') }}"></script>
+</head>
+
+<body>
+  <div id="overlay-gray"></div>
+  <img src="{{ url_for('static', filename='img/pac2-3.png') }}" id="logo-back" width="50%" />
+  <div id="particles"></div>
+  <div id="intro"></div>
+
+  <div class="leftbar">
+    <a href="#">
+      <img src="{{ url_for('static', filename='img/home_selected.png') }}" height="60px" title="HOME"></a>
+  </div>
+
+  <div class="right-content">
+    <h1>Welcome to PowerAutomate C2 Portal</h1>
+
+    <div class="boarderless-table-container">
+      <table>
+        <tr>
+          <td>Username</td>
+          <td><input type="text" id="username" name="username" placeholder="username" required></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" id="password" name="password" placeholder="password" required></td>
+        </tr>
+        <tr>
+          <td><button id="login-button">Login</button></td>
+        </tr>
+      </table>
+    </div>
+    <p> {{ message }} </p>
+  </div>
+
+  <div id="flat-dialog" class="dialog">
+    <div class="dialog-content">
+      <div class="content-header">
+        <div class="msg-title">Error</div>
+        <span class="close-dialog">x</span>
+      </div>
+      <div class="msg-body">
+        <p id="dialog-msg"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="term-of-use" class="dialog">
+    <div class="dialog-content">
+      <div class="content-header">
+        <div class="msg-title">Term of Use for Power Automate C2</div>
+        <span class="close-dialog">x</span>
+      </div>
+      <div class="msg-body">
+        <div class="msg-section-header">1. Project Purpose</div>
+        <div class="msg-section-content">Power Automate C2 is developed and published for the purpose of security
+          evaluation.</div>
+        <div class="msg-section-header">2. License</div>
+        <div class="msg-section-content">This project is licensed under the BSD 3-Clause License. Full license details
+          are available with the project's documentation.</div>
+        <div class="msg-section-header">3. No Liability for Damages</div>
+        <div class="msg-section-content">As stated in the BSD-3-Clause License, the copyright holder and contributors
+          are not liable for any damages arising from the use of this project.</div>
+        <div class="msg-section-content">
+          <form action="/login" method="POST">
+            <input type="hidden" name="username" id="hiddenUsername">
+            <input type="hidden" name="password" id="hiddenPassword">
+            <button type="submit" id="agree-button">Agree and Continue</button> 
+          </form>
+          <button id="cancel-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/components/dialog.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/login.js') }}"></script>
+
+</body>
+
+</html>
